@@ -1,0 +1,315 @@
+@charset "utf-8";
+/* CSS Document */
+body{
+	margin: 0px;
+}
+
+img.logopng{
+	margin-top: 5px;
+}
+
+#scriptsAll{
+	
+	float: left;
+	list-style: none; 
+	border-radius: 15px; 
+	/*background-color: #FFCF81; */
+	width: 1600px; 
+	/*height: 30px; */
+	/*left: 25%; */
+	margin-left: 30px;
+	margin-top: 5px; 
+	margin-bottom: 60px;
+}
+p.outcome{
+	/*margin-left: 10px;*/
+	position: relative;
+	left: 20px;
+	color: red;	
+	font-size: 20px
+}
+div.choiceServer{
+	border-bottom:1px dashed #000;
+	padding-bottom: 5px;
+
+}
+p.choiceServer{
+	margin: 7px;
+	/*text-align: center;*/
+	font-size: 20px;
+	padding-left: 24px;
+
+}
+p1.inputuserid{
+	/*display: block;*/
+	margin-left: 30px;	
+}
+input.userid{
+	margin-bottom: 5px;
+	margin-top: 5px;
+}
+input.clearAll{
+	/*margin-left: 34px;*/
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 56px
+}
+.server{
+	margin-left: 36px;
+	transform: scale(1.2, 1.2);
+}
+input.delete_activity_button{
+	/*float: left;*/
+	/*margin: auto;*/
+	margin-left: 14px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+
+}
+div.scriptsCollection{
+	border-top:1px dashed #000;
+
+	/*border-right:solid; border-right-width:1px; */
+}
+div.delete_activity{
+	width: 140px;
+	float: left;
+	padding-left: 30px;
+	/*margin-right: 120px;*/
+	/*border-top:1px dashed #000;*/
+	border-right-style:solid; border-right-width:1px; 
+
+}
+div.alllevelStars{
+	width: 140px;
+	float: left;
+	/*padding-left: 30px;*/
+	height: 300px;
+	border-right-style:solid; border-right-width:1px; 
+}
+input.maxLeveL{
+	margin-left: 30px;
+	width: 80px;
+	margin-bottom: 5px;
+}
+input.alllevelStars{
+	margin-left: 30px;
+}
+h3.alllevelStars{
+	text-align: center;
+}
+input.alllevel_Stars_button{
+	margin: auto;
+	margin-left: 35px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+div.bingoMallprogress{
+	width: 140px;
+	float: left;
+	height: 300px;
+	/*padding-left: 30px;*/
+	border-right-style:solid; border-right-width:1px; 
+
+}
+input.toggleFormer{
+	background-color: #e7e7e7;
+    color: black;
+    border: 2px solid #555555; /* Green */
+	border-radius: 12px;
+	margin-left: 30px;
+	/*width: 80px;*/
+	margin-bottom: 5px;
+}
+h3.bingoMallprogress{
+	text-align: center;
+}
+input.bingoMallprogress{
+	margin-left: 28px;
+}
+input.bingoMall_progress_button{
+	margin: auto;
+	margin-top: 10px;
+	margin-left: 35px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+
+}
+
+input.bingoMall_progress_button_clear{
+	margin: auto;
+	margin-top: 20px;
+	margin-left: 43px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+div.combineOlympic{
+	float: left;
+	width: 160px;
+	/*float: left;*/
+	/*padding-left: 10px;*/
+	height: 400px;
+	border-right-style:solid; border-right-width:1px; 	
+}
+h3.combineOlympic{
+	text-align: center;
+}
+input.sessionsNum{
+	margin-left: 3px;
+	margin-right: 3px;
+	
+	width: 15px;
+	height: 14px;
+	
+}
+div#combinetimeLimit{
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-left: 10px;
+	margin-right: 10px; 
+
+}
+
+input.combineOlympic{
+	margin-left: 5px;
+	margin-top: 8px;
+}
+
+p.combineOlympic{
+	margin-top: 1px;
+	margin-bottom: 4px;
+
+	/*margin: 3px 0;*/
+}
+input.combine_Olympic_button{
+	/*margin: auto;*/
+	margin-left: 30px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+
+input.getnewID{
+	/*margin-left: 14px;*/
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px
+}
+
+input.getTools{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px
+}
+
+input.button_Option{
+	float:left;
+	display: none;
+}
+
+input.deleteGift{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px
+}
+
+input.clearApp{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 114px;
+	background: #FFFF37;
+
+
+}
+
+input.circusUsers{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px
+}
+
+input.headSculpture{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px
+}
+
+div.logo{
+	padding-left: 40px;
+	background-color: #0c092c;
+}
+
+input.otherSevers{
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+	margin-left: 33px;
+	top: -2px;
+	position: relative;
+}
+
+p.other_servers{
+	margin: 2px auto;
+}
+
+
+div.combineServer{
+	float: left;
+	width: 170px;
+	/*float: left;*/
+	/*padding-left: 10px;*/
+	height: 400px;
+	border-right-style:solid; border-right-width:1px; 	
+}
+
+h3.combineServer{
+	text-align: center;
+}
+
+div#combinesshServer{
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 10px;
+	margin-right: 10px; 
+
+}
+
+input.combineServer{
+	margin-left: 5px;
+	margin-top: 8px;
+}
+
+p.combineServer{
+	margin-top: 1px;
+	margin-bottom: 4px;
+
+	/*margin: 3px 0;*/
+}
+input.combine_Server_button{
+	/*margin: auto;*/
+	margin-left: 35px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.time_Setting_button{
+	/*margin: auto;*/
+	margin-left: 35px;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.timeSetting{
+	margin-left: 10px;
+	width: 80px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+
+}
+div.timeSetting{
+	padding-top: 10px;
+	border-top: 1px dashed #000
+}
+
+p.id_req{
+	display: none;
+}
+p.server_req{
+	display: none;
+}

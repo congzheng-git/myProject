@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>test1</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"> 
+	<script src="https://cdn.staticfile.org/jquery/1.10.2/jquery.min.js"></script>
+	<link type="text/css" rel="stylesheet" href="{{ url_for('static', filename='css/test.css') }}"/>
+</head>
+<body>
+	<div class="logo"><img class="logopng" src="static/img/loginLOGO.png"></div>
+	<div id = 'scriptsAll'>
+		<form action="/test" method="POST">
+			<div class="choiceServer">
+			<p class="choiceServer"><b>选择服务器</b></p>
+				<input type='radio' name='server' value="jelly_new_dev" id='adr' class='server'>安卓
+				<input type='radio' name='server' value="jelly_new_dev2" id="jelly_new_dev2" class='server'>IOS
+				<input type='radio' name='server' value="jelly_new_dev3" id="jelly_new_dev3" class='server'>海外
+				<input type="button" name="otherSevers" id="otherSevers" class="otherSevers" value="收起">
+				<div id='other_servers' class="other_servers">
+					<p id='other_servers' class="other_servers">
+						<input type='radio' name='server' value="jelly_test_220_android" id='adr-220' class='server'>安卓-220
+						<input type='radio' name='server' value="jelly_test_221_ios" id="jelly_test_221_ios" class='server'>IOS-221	
+						<input type='radio' name='server' value="jelly_test_222_cm" id="jelly_test_222_cm" class='server'>海外-222
+					</p>
+					<p id='other_servers' class="other_servers">
+						<input type='radio' name='server' value="jelly_test_223_android" id="jelly_test_223_android"class='server'>安卓-223
+						<input type='radio' name='server' value="jelly_test_224_ios" id="jelly_test_224_ios" class='server'>IOS-224	
+						<input type='radio' name='server' value="jelly_test_225_cm" id="jelly_test_225_cm" class='server'>海外-225
+					</p>
+						<p id='other_servers' class="other_servers">
+						<input type='radio' name='server' value="jelly_test_226_android" id="jelly_test_226_android" class='server'>安卓-226
+						<input type='radio' name='server' value="jelly_test_227_ios" id="jelly_test_227_ios" class='server'>IOS-227	
+						<input type='radio' name='server' value="jelly_test_228_cm" id="jelly_test_228_cm" class='server'>海外-228
+					</p>
+						<p id='other_servers' class="other_servers">
+						<input type='radio' name='server' value="jelly_test_229_android" id="jelly_test_229_android" class='server'>安卓-229
+						<input type='radio' name='server' value="jelly_test_230_ios" id="jelly_test_230_ios" class='server'>IOS-230	
+						<input type='radio' name='server' value="jelly_test_231_cm" id="jelly_test_231_cm" class='server'>海外-231
+					</p>
+						<p id='other_servers' class="other_servers">
+						<input type='radio' name='server' value="jelly_test_232_android" id="jelly_test_232_android" class='server'>安卓-232
+						<input type='radio' name='server' value="jelly_test_233_ios" id="jelly_test_233_ios" class='server'>IOS-233	
+						<input type='radio' name='server' value="jelly_test_234_cm" id="jelly_test_234_cm" class='server'>海外-234
+					</p>
+				</div>
+			</div>
+			<p1 class='inputuserid'>输入用户ID:&nbsp;</p1>
+			<input type='text' name='userid' id='userid' class="userid">
+			<!-- <input type="button" class="clearAll" id='clearAll' value="重置所有选项"> -->
+			<input type="submit" class="getnewID" id='userLogoff' value="创建新ID">
+			<input type="submit" class="getTools" id='increaseTools' value="增加道具">
+			<input type="submit" class="circusUsers" ID="circusDummys" value="马戏团假人">
+			<input type="submit" class="circusUsers" ID="addStatue" value="马戏团雕像">
+			<input type="submit" class="headSculpture" ID="headSculpture" value="历史活动头像">
+
+			<!-- 一个不可见的text，用作服务器区分提交的button是哪个 -->
+			<input type="text" name='button_Option' class="button_Option" id='button_Option' value="">
+
+			<br>
+
+			<div class="scriptsCollection">
+				<div class="delete_activity">
+					<h3>删除活动数据</h3>
+					<!-- Activities with only 1 collection -->
+					<input type="radio" name="activity" id = 'starbank' value='s:inspire_bank_user'>星星银行<br>
+					<input type="radio" name="activity" id = 'inspireuser' value='s:inspire_user_job'>宝箱激励<br>
+					<input type="radio" name="activity" id = 'toyuser' value='s:toy_user_job'>玩具之家<br>
+					<input type="radio" name="activity" id = 'newmission' value='s:new_mission_user'>组队任务<br>
+					<input type="radio" name="activity" id = 'newtask' value='s:new_task_user'>迎新会<br>
+					<input type="radio" name="activity" id = 'campwar' value='s:skin_user'>猫/狗皮肤<br>
+					<input type="radio" name="activity" id = 'goldbutton' value='s:gold_button_user'>金卡座<br>
+					<input type="radio" name="activity" id = 'olympic' value='s:time_limit_user'>限时活动<br>
+
+					<!-- Activities with teams -->
+					<input type="radio" name="activity" id = 'marathon' value='t:marathon'>马拉松<br>
+					<input type="radio" name="activity" id = 'prizeclaw' value='t:circus'3>马戏团<br>
+					<!-- multiplex  -->
+					<input type="radio" name="activity" id = 'rocket' value='t:rocket'>火箭活动<br>
+
+					<!-- the ohters -->
+					<input type="radio" name="activity" id = 'passAll' value='o:pass_all_rank'>通关名人堂<br>
+					<br>
+					<input type="submit" id="actUserInfo" value="<删除>" class="delete_activity_button"><br>
+					<br>
+				</div>
+				<div class="alllevelStars">
+					<h3 class="alllevelStars">修改关卡进度</h3>
+					<input type="text" name="maxLeveL" id="maxLeveL" class="maxLeveL" value="输入所需关卡">
+					<input type="radio" name="alllevelStars" class="alllevelStars" id = 'goldLevels' value=1>金卡座<br>
+					<input type="radio" name="alllevelStars" class="alllevelStars" id = 'notgoldLevels' value=2>非金卡座<br>
+					<br>
+					<input type="submit" id= 'levelSetting' value="<提交>" class="alllevel_Stars_button"><br>
+					<br>
+				</div>
+				<div class="bingoMallprogress"  title="以每张照片为节点进行修改">
+					<h3 class="bingoMallprogress">修改集市进度</h3>
+					<input type="button" name="toggleFormer" id="toggleFormer" class="toggleFormer" value="部分隐藏">
+					<div id='former'>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '1_120' value='p_1_120'><1—120><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '2_140' value='p_2_140'><2—140><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '2_560' value='p_2_560'><2—560><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '3_340' value='p_3_340'><3—340><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '3_630' value='p_3_630'><3—630><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '3_740' value='p_3_740'><3—740><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '4_140' value='p_4_140'><4—140><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '4_360' value='p_4_360'><4—360><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '4_540' value='p_4_540'><4—540><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '4_720' value='p_4_720'><4—720><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '5—210' value='p_5_210'><5—210><br>	
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '5—360' value='p_5_360'><5—360><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '5—530' value='p_5_530'><5—530><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '5—710' value='p_5_710'><5—710><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '5—850' value='p_5_850'><5—850><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '6—190' value='p_6_190'><6—190><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '6—330' value='p_6_330'><6—330><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '6—450' value='p_6_450'><6—450><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '6—610' value='p_6_610'><6—610><br>	
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '6—790' value='p_6_790'><6—790><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '7—150' value='p_7_150'><7—150><br>			
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '7—340' value='p_7_340'><7—340><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '7—490' value='p_7_490'><7—490><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '7—650' value='p_7_650'><7—650><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '7—830' value='p_7_830'><7—830><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '8—170' value='p_8_170'><8—170><br>
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '8—320' value='p_8_320'><8—320><br>					
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '8—480' value='p_8_480'><8—480><br>		
+					</div>
+					<div id='latter'>		
+						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '8—770' value='p_8_770'><8—770><br>		
+						
+
+
+					</div>
+					<br>
+					<input type="submit" id='bingoMall' value="<提交>" class="bingoMall_progress_button"><br>
+					<br>
+				</div>
+				<div class="combineOlympic">
+					<h3 class="combineOlympic">限时活动相关</h3>
+					<div id='combinetimeLimit'>
+					<p class='combineOlympic'><input type="radio" name="combineOlympic" class="combineOlympic" id='delOly' value=1>删除活动相关所有用户数据<br></p>
+					<p class="combineOlympic"><input type="radio" name="combineOlympic" class="combineOlympic" value=2>清除勋章/头像/照片/套装等<br></p>
+					
+					<p class="combineOlympic"><input type="radio" name="combineOlympic" class="combineOlympic" value=3>模拟第<input type="text" name="sessionsNum" id='sessionsNum' class="sessionsNum" value='16'>届活动发奖弹窗<br></p>
+
+					<br>
+					<input type="submit" id= 'combineOlympic' value="<提交>" class="combine_Olympic_button"><br>
+					
+					</div>
+
+				</div>
+
+			</div>
+			
+			<p name = outcome class = outcome>{{ option_act }}</p>
+		</form>
+	</div>
+</body>
+<script type="text/javascript">
+	$(function(){
+	
+	// 	$('#userid').focus()
+	// 	function clear(){
+	// 		// 清除所有选项，每次加东西别忘了这里
+	// 		$("input[name='activity']:checked").attr('checked',false)
+	// 		$("input[name='alllevelStars']:checked").attr('checked',false)
+	// 		$("input[name='bingoMallprogress']:checked").attr('checked',false)
+	// 		$("input[name='combineOlympic']:checked").attr('checked',false)
+	// 	}
+		$('#clearAll').click(function(){
+			clear()
+		})
+		$('#delOly').click(function(){
+			$('#userid').val('1')
+		})
+		$('#maxLeveL').click(function(){
+			// 点击时清除默认显示文字
+			$('#maxLeveL').val('')
+		})
+
+		// 默认选择IOS服务器
+		$('#jelly_new_dev2').attr('checked','true')
+
+
+		$('#toggleFormer').click(function(){
+			// 隐藏照片部分选项，点击进行全部显示
+			$('#former').toggle()
+			if($('#toggleFormer').val() == '全部显示'){			
+				$('#toggleFormer').val('部分隐藏')
+
+			}else{
+				$('#toggleFormer').val('全部显示')
+			}
+		})
+		$('#otherSevers').click(function(){
+			$('#other_servers').toggle()
+			if($('#otherSevers').val() == '收起'){			
+				$('#otherSevers').val('其他')
+
+			}else{
+				$('#otherSevers').val('收起')
+			}
+		})
+		$('#otherSevers').click()
+		$('#toggleFormer').click()
+
+
+		// 所有submit一律置标识信息发送至后台
+		$(":submit").click(function(){
+			$('#button_Option').val(this.id)
+		})
+	})
+
+</script>
+</html>
