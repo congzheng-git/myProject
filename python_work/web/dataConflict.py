@@ -31,7 +31,7 @@ class dataConflict(userInfo.getUserInfo):
 
 			# 更新
 			self.udata['w'] = myDatetime
-			# self.udata['z1'] = Str_z1
+			self.udata['z1'] = Str_z1
 			result = self.db_data.update_one(self.target, {'$set': self.udata})
 			outcome = '同步时间戳已修改，可在前端upload触发冲突'
 		else:

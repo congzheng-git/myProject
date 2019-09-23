@@ -99,8 +99,8 @@ h3.alllevelStars{
 	text-align: center;
 }
 input.alllevel_Stars_button{
-	margin: auto;
-	margin-left: 35px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
@@ -117,8 +117,8 @@ input.toggleFormer{
     color: black;
     border: 2px solid #555555; /* Green */
 	border-radius: 12px;
-	margin-left: 30px;
-	/*width: 80px;*/
+	display: block;
+	margin: 0 auto;
 	margin-bottom: 5px;
 }
 h3.bingoMallprogress{
@@ -128,18 +128,16 @@ input.bingoMallprogress{
 	margin-left: 28px;
 }
 input.bingoMall_progress_button{
-	margin: auto;
+	display: block;
+	margin: 0 auto;
 	margin-top: 10px;
-	margin-left: 35px;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
-
 }
 
 input.bingoMall_progress_button_clear{
-	margin: auto;
-	margin-top: 20px;
-	margin-left: 43px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
@@ -182,8 +180,8 @@ p.combineOlympic{
 	/*margin: 3px 0;*/
 }
 input.combine_Olympic_button{
-	/*margin: auto;*/
-	margin-left: 30px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
@@ -284,14 +282,22 @@ p.combineServer{
 	/*margin: 3px 0;*/
 }
 input.combine_Server_button{
-	/*margin: auto;*/
-	margin-left: 35px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
 input.time_Setting_button{
 	/*margin: auto;*/
-	margin-left: 35px;
+	display: block;
+	margin: 0 auto;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.time_Current_button{
+	/*margin: auto;*/
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }

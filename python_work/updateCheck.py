@@ -4,23 +4,58 @@ from selenium import webdriver
 from selenium.common.exceptions import TimeoutException
 import time
 import os
+import shutil
 import requests
 
-
-
 file_updatelink = 'sys_config.xlsx'
-
-
 updateExcel = xlrd.open_workbook(filename=file_updatelink)
-
 updateSheet = updateExcel.sheet_by_index(0)
-
-publishPath = r"Z:\android\China\6.9.1"
-downloadPath = r"G:\updateCheck"
 testlink_col = updateSheet.col(2)
 testlink_col_channels = updateSheet.col(4)
 
-# function - get MD5
+publishPath = r'Z:\publish\android\China\6.9.1'
+
+def report(publishPath):
+	# get current version for report
+	current_version = publishPath.split('\\')[-1]
+	report_name = r'Z:\01-QA-Jelly\4-Testing_report\check_report_' + current_version + '.txt'
+	return report_name
+
+def downloadAPKpath(publishPath):
+	# get current version for downloadAPKs and create it
+	current_version = publishPath.split('\\')[-1]
+	download_dir_name = 'update_prompt_downloaded_' + current_version
+	download_path_name = r'Z:\01-QA-Jelly\4-Testing_report'
+	downloadPath = os.path.join(download_path_name, download_dir_name)
+	if not os.path.exists(downloadPath):
+		os.mkdir(downloadPath)
+	else:
+		for i in os.listdir(downloadPath):
+			os.remove(os.path.join(downloadPath, i))
+	return downloadPath
+
+Net_downloadPath = downloadAPKpath(publishPath)
+downloadPath = r'G:\updateCheck'
+for i in os.listdir(downloadPath):
+	os.remove(os.path.join(downloadPath, i))
+
+def cutDirs(path, new_path):
+	try:
+		for dir in os.listdir(path):
+			cur_path = os.path.join(path, dir)
+			new_file_path = os.path.join(new_path, dir)
+			if not os.path.exists(new_file_path):
+				shutil.move(cur_path, new_file_path)
+				print('\'' + new_file_path + '\'' + 'has cut')
+			else:
+				os.remove(new_file_path)
+				shutil.move(cur_path, new_file_path)
+				print('\'' + new_file_path + '\'' + 'has cut')
+	except FileNotFoundError:
+		print('something downloaded over, try again')
+		cutDirs(downloadPath, Net_downloadPath)
+
+# function - get MD5(cmd command)
 def getMD5(apk):
 	command = 'certutil -hashfile '
 	apkname = apk
@@ -29,22 +64,23 @@ def getMD5(apk):
 
 # get APK-MD5 in publish
 def publishMD5(path):
-	MD5TXT = r'G:\MD5check\MD5.txt'
+	MD5TXT = report(publishPath)
 	with open (MD5TXT, 'w+') as checkMD5:
 		for root, dirs, files in os.walk(path):
 			for filename in files:
 				# write in TXT - MD5.TXT
 				if filename.endswith('apk'):
-					print(filename + ' done')
-					checkMD5.write(filename + ': ')
+					checkMD5.write(filename + ', MD5: ')
 					checkMD5.write(getMD5(os.path.join(root, filename)) + '\n')
+					print(filename + ' gets MD5 done')
+
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
 	print('publish--apk--MD5--finished')
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
 
-# mactchMD5 between dowload-APKs and publish-APKs
+# mactchMD5 dowload-APKs to publish-APKs
 def mactchMD5(path, links_Apks):
-	MD5TXT = r'G:\MD5check\MD5.txt'
+	MD5TXT = report(publishPath)
 	for root, dirs, files in os.walk(path):
 		for filename in files:
 			if filename.endswith('apk'):
@@ -55,13 +91,13 @@ def mactchMD5(path, links_Apks):
 					# find in MD5.TXT
 					pos = linesMD5.find(downloadMD5.rstrip())
 					if pos 	!= -1:
-						print(filename + ' done')
+						print(filename + ' matches MD5 done')
 						linesMD5 = linesMD5[:pos] + '-----------success-----------' + linesMD5[pos:]
 						with open (MD5TXT, 'w') as checkMD5:
 							checkMD5.write(linesMD5)
+					# found failed--write filename and links
 					else:
 						with open (MD5TXT, 'a+') as checkMD5:
-							# print(links_Apks)
 							fileDownload = filename + '.crdownload'
 							if fileDownload in links_Apks.values():
 								failedApk_link = list(links_Apks.keys())[list(links_Apks.values()).index(fileDownload)]
@@ -70,7 +106,6 @@ def mactchMD5(path, links_Apks):
 								failedApk_link = list(links_Apks.keys())[list(links_Apks.values()).index(filename)]
 								checkMD5.write('\n\n' + filename + ' mactches failed, ' + 'from the link: ' + failedApk_link)
 
-	# print('\n')
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
 	print('MD5-check finished, get result at MD5.TXT')
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
@@ -82,7 +117,7 @@ def Checkfinished(path, linkNum, downloadFailedNum):
 	print('finished apks num: ' + str(finishedNum))
 	print('out time apks num: ' + str(downloadFailedNum))
 	if finishedNum + downloadFailedNum  >= linkNum:
-		print('go on download')
+		print('go on downloading')
 		return True
 	else:
 		return False
@@ -94,11 +129,14 @@ def sortFile(path):
 		dirList.sort(key=lambda fn: os.path.getctime(path + '\\' + fn))
 	except FileNotFoundError:
 		print('not found, try again')
-		sortFile(path)
-	return dirList[-1]
+		sortFile(downloadPath)
+	if len(dirList) != 0:
+		return dirList[-1]
+	else:
+		return 'Failed - noResponse'
 
 # read excel, download apks
-def downloadApks():
+def downloadApks(publishPath, downloadPath, Net_downloadPath):
 	
 	downloadFailedNum = 0
 	linkNum = 0
@@ -111,55 +149,56 @@ def downloadApks():
 			testlink = str(testlink_col[i]).split(':', 1)[1].strip('\'')
 			if testlink.startswith('http'):
 				linkNum += 1
-				print('links num:' + str(linkNum))
+				print('number of links visited: ' + str(linkNum))
 				# get links in webbroswer
 				links_List.append(testlink)
 				try:
 					driver.get(testlink)
 				except TimeoutException:
-					print('browser time out: ' + testlink)
-					# links_List.append(testlink)
-					# driver.get(testlink)
+					print('browser is time out: ' + testlink)
 					continue
 				waitingTime = 0
 				time.sleep(5)
+				# get the latest downloaded file and save it in the dictionary 
 				if sortFile(downloadPath):
-					if len(list(links_Apks.values())) > 1:
-						if not sortFile(downloadPath) == list(links_Apks.values())[-1]:
-							links_Apks[testlink] = sortFile(downloadPath)
+					latestFile = sortFile(downloadPath)
+					if len(list(links_Apks.values())) >= 1:
+						# if the connection is not responding, no file is downloaded
+						if not latestFile == list(links_Apks.values())[-1]:
+							links_Apks[testlink] = latestFile
 						else:
-							links_Apks[testlink] = 'Failed - noResponse'
+							links_Apks[testlink] = 'Failed - get no Response(APK) from this link'
 					else:
-						links_Apks[testlink] = sortFile(downloadPath)
+						links_Apks[testlink] = latestFile
 				# check downloading status
 				while not Checkfinished(downloadPath, linkNum, downloadFailedNum):
 					print('downloading, wait for 10s...')
 					waitingTime += 10
 					time.sleep(10)
-					# check out-time
+					# wait 30 seconds for each file
 					if waitingTime == 50:
 						waitingTime = 0
-						print('out-time: ' + testlink)
+						print('APK downloaded timeout: ' + testlink)
 						finishedNum = downloadFinished(downloadPath)
 						downloadFailedNum = downloadFailed(linkNum, finishedNum, downloadFailedNum)
 	# waiting for out-time
-	# print(links_List)
-	
 	overWaittime = 0
 	while len([filename for root, dirs, files, in os.walk(downloadPath) for filename in files if not filename.endswith('apk')]) != 0:
 		time.sleep(30)
 		overWaittime += 30
-		# if overWaittime > 500:
-		# 	break
-		print('waiting for out-time apks downloading')
+		if overWaittime >= 900:
+			print('too long to wait, please check the downloaded Apks')
+			break
+		print('waiting for out-time apks downloading...')
 	# result
-	print('links-Apks:', links_Apks) 
+	# print('links-Apks:', links_Apks) 
+	for i in links_Apks.keys():
+		print("%-150s %-80s" % (i, links_Apks[i]))
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
-	print('links num: %-5s'%(linkNum))
-	print('apks finished num: %-5s'%(downloadFinished(downloadPath)))
-	print('links failed num: %-5s'%(str(int(linkNum) - int(downloadFinished(downloadPath)))))
+	print('number of links visited: %-5s'%(linkNum))
+	print('number of apks finished: %-5s'%(downloadFinished(downloadPath)))
+	print('number of links  failed: %-5s'%(str(int(linkNum) - int(downloadFinished(downloadPath)))))
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
-
 
 	for value in list(links_Apks.values()):
 		valueDownload = str(value)
@@ -169,24 +208,26 @@ def downloadApks():
 					links_List.remove(list(links_Apks.keys())[list(links_Apks.values()).index(value)])
 					# print(links_List)
 			else: 
-				print('not found-', value)
+				print('Not yet downloaded -', value, 'from the link: ', list(links_Apks.keys())[list(links_Apks.values()).index(value)])
 		else:
 			if valueDownload in [filename for root, dirs, files, in os.walk(downloadPath) for filename in files]:
 				if list(links_Apks.keys())[list(links_Apks.values()).index(value)] in links_List:
 					links_List.remove(list(links_Apks.keys())[list(links_Apks.values()).index(value)])
 					# print(links_List)
 			else: 
-				print('not found -', list(links_Apks.keys())[list(links_Apks.values()).index(value)], value)
+				print('Not yet downloaded -', value, 'from the link: ', list(links_Apks.keys())[list(links_Apks.values()).index(value)])
+
 	if len(links_List) != 0:
-		print('failed links: ' ,set(links_List))
+		print('failed links list: ' ,set(links_List))
 	else: 
-		print('all links success')
+		print('all links download success')
+
 	print('download over')
+	cutDirs(downloadPath, Net_downloadPath)
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
-
-
+ 
 	publishMD5(publishPath)
-	mactchMD5(downloadPath, links_Apks)
+	mactchMD5(Net_downloadPath, links_Apks)
 
 # finined apks num
 def downloadFinished(path):
@@ -217,13 +258,22 @@ def checkChannels(channelsDict, MD5TXT):
 			if testlink.startswith('http'):
 				for i in str(testlink_col_channels[i]).split(':', 1)[1].split(';'):
 					channelNum = i.strip('\'')
-					if channelsDict.setdefault(channelNum, None) and channelsDict.setdefault(channelNum, None) in testlink:
-						print('channel--%-5s--checked success, %-10s in the update link'%(str(channelNum), channelsDict[channelNum])) 
+					with open (MD5TXT, 'a+') as checkMD5:
+						checkMD5.write('\n')
+						checkMD5.write('\n')
+					if channelsDict.setdefault(channelNum, None):
+						if channelsDict.setdefault(channelNum, None) in testlink:
+							print('channel--%-5s--checked success, %-10s in the update link'%(str(channelNum), channelsDict[channelNum])) 
+						else:
+							print('channel--%-5s--checked failed, the keywords--%-10s--is not found, recorded in the MD5.TXT'%(str(channelNum), channelsDict[channelNum]))
+							with open (MD5TXT, 'a+') as checkMD5:
+								checkMD5.write('\n')
+								checkMD5.write('\n' + 'channel ' + str(channelNum) + ' failed, the wrong link is: ' + testlink)
 					else:
-						print('channel--%-5s--checked failed, write in the MD5.TXT'%(str(channelNum)))
+						print('channel--%-5s--is new, need to record')
 						with open (MD5TXT, 'a+') as checkMD5:
 							checkMD5.write('\n')
-							checkMD5.write('\n' + 'channel ' + str(channelNum) + ' failed, the wrong link is: ' + testlink)
+							checkMD5.write('\n' + 'channel ' + str(channelNum) + ' failed--links for the new channels, the wrong link is: ' + testlink)
 	# check over
 	print('----------------------------------------------------------------------------------------------------------------------------------------')
 	print('links-check finished, all is finished')
@@ -252,9 +302,9 @@ channelsDict = {
 	'33' : 'sogoucdn',
 	'23' : 'wandoujia',
 	'100' : 'mfp',
-	'910' : 'langang',
-	'916' : 'langang',
-	'12' : 'mobilemarket',
+	'910' : 'anzhi91',
+	'916' : 'anzhi91',
+	'12' : 'mmarket',
 	'124' : 'iqiyi',
 	'21' : '360',
 	'11' : 'dianxin_inside',
@@ -295,15 +345,17 @@ channelsDict = {
 	'154' : 'sugar',
 	'149' : 'appchina',
 	'26' : 'xiaomi',
-	'172' : 'game233_test'}
+	'172' : 'game233_test',
+	'922' : 'langang',
+	'923' : 'lang11'
+	}
 
 
 if __name__ == '__main__':
 
 	options = webdriver.ChromeOptions()
-	prefs = {'profile.default_content_settings.popups': 0, 'download.default_directory': r'G:\updateCheck'}
+	prefs = {'profile.default_content_settings.popups': 0, 'download.default_directory': downloadPath}
 	options.add_experimental_option('prefs', prefs)
 	driver = webdriver.Chrome(chrome_options=options)
-	downloadApks()
-
+	downloadApks(publishPath, downloadPath, Net_downloadPath)
 

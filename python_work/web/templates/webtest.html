@@ -61,6 +61,7 @@
 				<div class="delete_activity">
 					<h3>删除活动数据</h3>
 					<!-- Activities with only 1 collection -->
+					<input type="radio" name="activity" id = 'giftdata' value='s:user_gift_data'>皮肤礼包<br>
 					<input type="radio" name="activity" id = 'starbank' value='s:inspire_bank_user'>星星银行<br>
 					<!-- <input type="radio" name="activity" id = 'inspireuser' value='s:inspire_user_job'>宝箱激励<br> -->
 					<input type="radio" name="activity" id = 'toyuser' value='s:toy_user_job'>玩具之家<br>
@@ -72,6 +73,7 @@
 					<!-- <input type="radio" name="activity" id = 'olympic' value='s:time_limit_user'>限时活动<br> -->
 					<input type="radio" name="activity" id = 'fivecheck' value='s:five_check_in'>周年签到<br>
 					<input type="radio" name="activity" id = 'skinautumn' value='s:skin_mid_autumn_user'>中秋皮肤<br>
+
 					<!-- Activities with teams -->
 					<input type="radio" name="activity" id = 'marathon' value='t:marathon'>马拉松<br>
 					<input type="radio" name="activity" id = 'prizeclaw' value='t:circus'3>马戏团<br>
@@ -153,17 +155,17 @@
 						<br>
 						<input type="submit" id='combineServer' value="<提交>" class="combine_Server_button">
 						<br>
-						<br>
-						<br>
 						<div class="timeSetting">
 						<SAMP title="格式:201X-XX-XX">日期:</SAMP><input type="text" name="timeSetting_date" id="timeSetting_date" class="timeSetting"  placeholder="201X-XX-XX">
 						<SAMP title="格式:XX:XX:XX">时间:</SAMP><input type="text" name="timeSetting_clock" id="timeSetting_clock" class="timeSetting"  placeholder="XX:XX:XX">
 						</div>
 					<br>
 					<input type="submit" id='combineServer' name="timeSetting" value="<设置>" class="time_Setting_button"><br>
+					<input type="submit" id='combineServer' name="timeSetting" value="<当前时间>" class="time_Current_button"><br>
 					</div>
 				</div>
 			</div>
+			<!-- 返回的信息进行显示 -->
 			<div><p name = outcome class = outcome>{{ option_act }}</p></div>
 			<div><p name = id_req class = id_req>{{ id_req }}</p></div>
 			<div><p name = server_req class = server_req>{{ server_req }}</p></div>
@@ -199,6 +201,12 @@
 			$('#resetTime').removeAttr('checked')
 			$('.time_Setting_button').val('setting')
 		})
+		$('.time_Current_button').click(function(){
+			$('#userid').val('1')
+			$('#resetTime').removeAttr('checked')
+			$(this).val('current')
+		})
+
 		$('#timeSetting_clock').click(function(){
 			$('#userid').val('1')
 			$('#resetTime').removeAttr('checked')
@@ -212,14 +220,14 @@
 			// 点击时清除默认显示文字
 			$('#maxLeveL').val('')
 		})
-		$('#timeSetting_date').click(function(){
-			// 点击时清除默认显示文字
-			$('#timeSetting_date').val('')
-		})
-		$('#timeSetting_clock').click(function(){
-			// 点击时清除默认显示文字
-			$('#timeSetting_clock').val('')
-		})
+		// $('#timeSetting_date').click(function(){
+		// 	// 点击时清除默认显示文字
+		// 	$('#timeSetting_date').val('')
+		// })
+		// $('#timeSetting_clock').click(function(){
+		// 	// 点击时清除默认显示文字
+		// 	$('#timeSetting_clock').val('')
+		// })
 		$('.bingoMall_progress_button_clear').click(function(){
 			$('.bingoMall_progress_button_clear').val('doing')
 		})
@@ -255,7 +263,7 @@
 
 		// 所有submit一律置标识信息发送至后台
 		$(":submit").click(function(){
-			$('#button_Option').val(this.id)
+			$('#button_Option').val($(this).attr("id"))
 		})
 	})
 
