@@ -9,7 +9,7 @@ from importlib import import_module
 from lib.mongoweb import mongodb
 
 app = Flask(__name__)
-# flask用法，允许POST(我也不太明白)
+# flask用法
 @app.route('/test', methods=['POST', 'GET'])
 
 # 服务器主函数
