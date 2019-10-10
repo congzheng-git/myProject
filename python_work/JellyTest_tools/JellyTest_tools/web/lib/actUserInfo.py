@@ -1,13 +1,14 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from mongoweb import mongodb
-import userInfo
+from lib.mongoweb import mongodb
+import lib.userInfo
 
 """删除活动内ID相关数据"""
 
 
-class actUserInfo(userInfo.getUserInfo):
+
+class actUserInfo(lib.userInfo.getUserInfo):
 	# 继承自getUserInfo
 	def __init__(self, userid):
 		super(actUserInfo, self).__init__(userid)

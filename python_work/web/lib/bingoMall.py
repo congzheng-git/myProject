@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from mongoweb import mongodb
-import progress
-import userInfo
+from lib.mongoweb import mongodb
+import lib.progress
+import lib.userInfo
 
 """修改集市进度"""
 
-class bingoMall(userInfo.getUserInfo):
+class bingoMall(lib.userInfo.getUserInfo):
 
 	def __init__(self, userid):
 		super(bingoMall, self).__init__(userid)

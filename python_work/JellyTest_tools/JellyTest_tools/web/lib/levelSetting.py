@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from mongoweb import mongodb
-import userInfo
+from lib.mongoweb import mongodb
+import lib.userInfo
 
 """设置关卡进度"""
 
 
-class levelSetting(userInfo.getUserInfo):
+class levelSetting(lib.userInfo.getUserInfo):
 
 	def __init__(self, userid):
 		super(levelSetting, self).__init__(userid)

@@ -14,7 +14,7 @@ img.logopng{
 	list-style: none; 
 	border-radius: 15px; 
 	/*background-color: #FFCF81; */
-	width: 1200px; 
+	width: 1600px; 
 	/*height: 30px; */
 	/*left: 25%; */
 	margin-left: 30px;
@@ -30,7 +30,7 @@ p.outcome{
 }
 div.choiceServer{
 	border-bottom:1px dashed #000;
-	padding-bottom: 5px
+	padding-bottom: 5px;
 
 }
 p.choiceServer{
@@ -99,8 +99,8 @@ h3.alllevelStars{
 	text-align: center;
 }
 input.alllevel_Stars_button{
-	margin: auto;
-	margin-left: 35px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
@@ -117,8 +117,8 @@ input.toggleFormer{
     color: black;
     border: 2px solid #555555; /* Green */
 	border-radius: 12px;
-	margin-left: 30px;
-	/*width: 80px;*/
+	display: block;
+	margin: 0 auto;
 	margin-bottom: 5px;
 }
 h3.bingoMallprogress{
@@ -128,50 +128,25 @@ input.bingoMallprogress{
 	margin-left: 28px;
 }
 input.bingoMall_progress_button{
-	margin: auto;
-	margin-left: 35px;
-	transform: scale(1.2, 1.2);
-	border-radius: 6px;
-
-}
-
-/*div.dataconflict{
-	float: left;
-	width: 140px;
-	float: left;
-	padding-left: 30px;
-	height: 300px;
-	border-right-style:solid; border-right-width:1px; 
-}
-
-h3.dataconflict{
-	text-align: center;
-}
-
-
-p.dataconflict{
-	text-align: center;
-	margin: 0 auto;
-	margin-left: 20px;
-	width: 110px;
-	padding-left: 10px；
-}
-
-input.data_conflict_button{
 	display: block;
-	: : 20px;
-	margin-bottom: 16px;
-	margin-left: 35px;
+	margin: 0 auto;
+	margin-top: 10px;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
-}*/
+}
 
+input.bingoMall_progress_button_clear{
+	display: block;
+	margin: 0 auto;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
 div.combineOlympic{
 	float: left;
 	width: 160px;
 	/*float: left;*/
 	/*padding-left: 10px;*/
-	height: 300px;
+	height: 400px;
 	border-right-style:solid; border-right-width:1px; 	
 }
 h3.combineOlympic{
@@ -183,9 +158,6 @@ input.sessionsNum{
 	
 	width: 15px;
 	height: 14px;
-	/*margin-bottom: 5px;*/
-	/*margin-top: 10px;*/
-	/*padding-left: 10px;*/
 	
 }
 div#combinetimeLimit{
@@ -208,8 +180,8 @@ p.combineOlympic{
 	/*margin: 3px 0;*/
 }
 input.combine_Olympic_button{
-	/*margin: auto;*/
-	margin-left: 30px;
+	display: block;
+	margin: 0 auto;
 	transform: scale(1.2, 1.2);
 	border-radius: 6px;
 }
@@ -274,4 +246,76 @@ input.otherSevers{
 
 p.other_servers{
 	margin: 2px auto;
+}
+
+
+div.combineServer{
+	float: left;
+	width: 170px;
+	/*float: left;*/
+	/*padding-left: 10px;*/
+	height: 400px;
+	border-right-style:solid; border-right-width:1px; 	
+}
+
+h3.combineServer{
+	text-align: center;
+}
+
+div#combinesshServer{
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: 10px;
+	margin-right: 10px; 
+
+}
+
+input.combineServer{
+	margin-left: 5px;
+	margin-top: 8px;
+}
+
+p.combineServer{
+	margin-top: 1px;
+	margin-bottom: 4px;
+
+	/*margin: 3px 0;*/
+}
+input.combine_Server_button{
+	display: block;
+	margin: 0 auto;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.time_Setting_button{
+	/*margin: auto;*/
+	display: block;
+	margin: 0 auto;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.time_Current_button{
+	/*margin: auto;*/
+	display: block;
+	margin: 0 auto;
+	transform: scale(1.2, 1.2);
+	border-radius: 6px;
+}
+input.timeSetting{
+	margin-left: 10px;
+	width: 80px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+
+}
+div.timeSetting{
+	padding-top: 10px;
+	border-top: 1px dashed #000
+}
+
+p.id_req{
+	display: none;
+}
+p.server_req{
+	display: none;
 }

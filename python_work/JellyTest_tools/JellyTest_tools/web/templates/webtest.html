@@ -11,14 +11,14 @@
 	<div id = 'scriptsAll'>
 		<form action="/test" method="POST">
 			<div class="choiceServer">
-			<p class="choiceServer"><b>选择服务器</b></p>
-				<input type='radio' name='server' value="jelly_new_dev" id='adr' class='server'>安卓
+				<p class="choiceServer"><b>选择服务器</b></p>
+				<input type='radio' name='server' value="jelly_new_dev" id='jelly_new_dev' class='server'>安卓
 				<input type='radio' name='server' value="jelly_new_dev2" id="jelly_new_dev2" class='server'>IOS
 				<input type='radio' name='server' value="jelly_new_dev3" id="jelly_new_dev3" class='server'>海外
 				<input type="button" name="otherSevers" id="otherSevers" class="otherSevers" value="收起">
 				<div id='other_servers' class="other_servers">
 					<p id='other_servers' class="other_servers">
-						<input type='radio' name='server' value="jelly_test_220_android" id='adr-220' class='server'>安卓-220
+						<input type='radio' name='server' value="jelly_test_220_android" id='jelly_test_220_android' class='server'>安卓-220
 						<input type='radio' name='server' value="jelly_test_221_ios" id="jelly_test_221_ios" class='server'>IOS-221	
 						<input type='radio' name='server' value="jelly_test_222_cm" id="jelly_test_222_cm" class='server'>海外-222
 					</p>
@@ -50,26 +50,29 @@
 			<input type="submit" class="getnewID" id='userLogoff' value="创建新ID">
 			<input type="submit" class="getTools" id='increaseTools' value="增加道具">
 			<input type="submit" class="circusUsers" ID="circusDummys" value="马戏团假人">
-			<input type="submit" class="circusUsers" ID="addStatue" value="马戏团雕像">
+			<!-- <input type="submit" class="circusUsers" ID="addStatue" value="马戏团雕像"> -->
 			<input type="submit" class="headSculpture" ID="headSculpture" value="历史活动头像">
+			<input type="submit" class="headSculpture" ID="dataConflict" value="数据冲突">
 
 			<!-- 一个不可见的text，用作服务器区分提交的button是哪个 -->
 			<input type="text" name='button_Option' class="button_Option" id='button_Option' value="">
-
 			<br>
-
 			<div class="scriptsCollection">
 				<div class="delete_activity">
 					<h3>删除活动数据</h3>
 					<!-- Activities with only 1 collection -->
+					<input type="radio" name="activity" id = 'giftdata' value='s:user_gift_data'>皮肤礼包<br>
 					<input type="radio" name="activity" id = 'starbank' value='s:inspire_bank_user'>星星银行<br>
-					<input type="radio" name="activity" id = 'inspireuser' value='s:inspire_user_job'>宝箱激励<br>
+					<!-- <input type="radio" name="activity" id = 'inspireuser' value='s:inspire_user_job'>宝箱激励<br> -->
 					<input type="radio" name="activity" id = 'toyuser' value='s:toy_user_job'>玩具之家<br>
-					<input type="radio" name="activity" id = 'newmission' value='s:new_mission_user'>组队任务<br>
+					<!-- <input type="radio" name="activity" id = 'newmission' value='s:new_mission_user'>组队任务<br> -->
 					<input type="radio" name="activity" id = 'newtask' value='s:new_task_user'>迎新会<br>
-					<input type="radio" name="activity" id = 'campwar' value='s:skin_user'>猫/狗皮肤<br>
+					<input type="radio" name="activity" id = 'campwar' value='s:skin_dog_user'>狗皮肤<br>
 					<input type="radio" name="activity" id = 'goldbutton' value='s:gold_button_user'>金卡座<br>
-					<input type="radio" name="activity" id = 'olympic' value='s:time_limit_user'>限时活动<br>
+					<input type="radio" name="activity" id = 'teashop' value='s:tea_shop_user'>奶茶经营<br>
+					<!-- <input type="radio" name="activity" id = 'olympic' value='s:time_limit_user'>限时活动<br> -->
+					<input type="radio" name="activity" id = 'fivecheck' value='s:five_check_in'>周年签到<br>
+					<input type="radio" name="activity" id = 'skinautumn' value='s:skin_mid_autumn_user'>中秋皮肤<br>
 
 					<!-- Activities with teams -->
 					<input type="radio" name="activity" id = 'marathon' value='t:marathon'>马拉松<br>
@@ -127,12 +130,10 @@
 					</div>
 					<div id='latter'>		
 						<input type="radio" name="bingoMallprogress" class="bingoMallprogress" id = '8—770' value='p_8_770'><8—770><br>		
-						
-
 
 					</div>
-					<br>
 					<input type="submit" id='bingoMall' value="<提交>" class="bingoMall_progress_button"><br>
+					<input type="submit" id='bingoMall' name="bingoMallclear" value="clear" class="bingoMall_progress_button_clear"><br>
 					<br>
 				</div>
 				<div class="combineOlympic">
@@ -145,18 +146,36 @@
 
 					<br>
 					<input type="submit" id= 'combineOlympic' value="<提交>" class="combine_Olympic_button"><br>
-					
 					</div>
-
 				</div>
-
+				<div class="combineServer">
+					<h3 class="combineServer">服务器相关</h3>
+					<div id='combinesshServer'>
+						<p class="combineServer"><input type="radio" name="combineServer" class="combineServer" id='resetTime' value=1>重置服务器时间<br></p>
+						<br>
+						<input type="submit" id='combineServer' value="<提交>" class="combine_Server_button">
+						<br>
+						<div class="timeSetting">
+						<SAMP title="格式:201X-XX-XX">日期:</SAMP><input type="text" name="timeSetting_date" id="timeSetting_date" class="timeSetting"  placeholder="201X-XX-XX">
+						<SAMP title="格式:XX:XX:XX">时间:</SAMP><input type="text" name="timeSetting_clock" id="timeSetting_clock" class="timeSetting"  placeholder="XX:XX:XX">
+						</div>
+					<br>
+					<input type="submit" id='combineServer' name="timeSetting" value="<设置>" class="time_Setting_button"><br>
+					<input type="submit" id='combineServer' name="timeSetting" value="<当前时间>" class="time_Current_button"><br>
+					</div>
+				</div>
 			</div>
-			
-			<p name = outcome class = outcome>{{ option_act }}</p>
-		</form>
+			<!-- 返回的信息进行显示 -->
+			<div><p name = outcome class = outcome>{{ option_act }}</p></div>
+			<div><p name = id_req class = id_req>{{ id_req }}</p></div>
+			<div><p name = server_req class = server_req>{{ server_req }}</p></div>
+
+
 	</div>
+		</form>
 </body>
 <script type="text/javascript">
+
 	$(function(){
 	
 	// 	$('#userid').focus()
@@ -167,19 +186,57 @@
 	// 		$("input[name='bingoMallprogress']:checked").attr('checked',false)
 	// 		$("input[name='combineOlympic']:checked").attr('checked',false)
 	// 	}
-		$('#clearAll').click(function(){
-			clear()
-		})
+		// $('#clearAll').click(function(){
+		// 	clear()
+		// })
 		$('#delOly').click(function(){
 			$('#userid').val('1')
 		})
+		$('.combine_Server_button').click(function(){
+			$('#userid').val('1')
+		})
+
+		$('.time_Setting_button').click(function(){
+			$('#userid').val('1')
+			$('#resetTime').removeAttr('checked')
+			$('.time_Setting_button').val('setting')
+		})
+		$('.time_Current_button').click(function(){
+			$('#userid').val('1')
+			$('#resetTime').removeAttr('checked')
+			$(this).val('current')
+		})
+
+		$('#timeSetting_clock').click(function(){
+			$('#userid').val('1')
+			$('#resetTime').removeAttr('checked')
+		})
+		$('#timeSetting_date').click(function(){
+			$('#userid').val('1')
+			$('#resetTime').removeAttr('checked')
+		})
+
 		$('#maxLeveL').click(function(){
 			// 点击时清除默认显示文字
 			$('#maxLeveL').val('')
 		})
+		// $('#timeSetting_date').click(function(){
+		// 	// 点击时清除默认显示文字
+		// 	$('#timeSetting_date').val('')
+		// })
+		// $('#timeSetting_clock').click(function(){
+		// 	// 点击时清除默认显示文字
+		// 	$('#timeSetting_clock').val('')
+		// })
+		$('.bingoMall_progress_button_clear').click(function(){
+			$('.bingoMall_progress_button_clear').val('doing')
+		})
 
 		// 默认选择IOS服务器
 		$('#jelly_new_dev2').attr('checked','true')
+		// 默认上次提交的ID与服务器
+		$('#userid').val($('.id_req').html())
+		$('#' + $('.server_req').html()).attr('checked','true')
 
 
 		$('#toggleFormer').click(function(){
@@ -201,13 +258,12 @@
 				$('#otherSevers').val('收起')
 			}
 		})
-		$('#otherSevers').click()
+		// $('#otherSevers').click()
 		$('#toggleFormer').click()
-
 
 		// 所有submit一律置标识信息发送至后台
 		$(":submit").click(function(){
-			$('#button_Option').val(this.id)
+			$('#button_Option').val($(this).attr("id"))
 		})
 	})
 

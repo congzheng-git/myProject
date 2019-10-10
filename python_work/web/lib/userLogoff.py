@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from mongoweb import mongodb
-import userInfo
+from lib.mongoweb import mongodb
+import lib.userInfo
 
 """创建新用户"""
 
 
-class userLogoff(userInfo.getUserInfo):
+class userLogoff(lib.userInfo.getUserInfo):
 	def __init__(self, userid):
 		super(userLogoff, self).__init__(userid)
 		self.db_info = self.serverDb['user_info']
@@ -28,11 +28,4 @@ class userLogoff(userInfo.getUserInfo):
 		else:
 			outcome = 'ID not found'
 
-	# def id_req(self):
-		
-
 		return outcome
- 
-
-
-

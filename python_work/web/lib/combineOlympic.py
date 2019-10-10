@@ -1,13 +1,13 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from mongoweb import mongodb
-import userInfo
+from lib.mongoweb import mongodb
+import lib.userInfo
 
 """限时活动功能集合"""
 
 
-class combineOlympic(userInfo.getUserInfo):
+class combineOlympic(lib.userInfo.getUserInfo):
 
 	def __init__(self, userid):
 		super(combineOlympic, self).__init__(userid)
