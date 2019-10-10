@@ -16,23 +16,23 @@ app = Flask(__name__)
 def scripts_All():
 	if request.method == 'POST':
 		# Web端提交(post)后执行——获取userid以及本次所提交请求的标识
-		# try:
-		userid = request.values.get('userid')
-		userserver = request.values.get('server')
-		button_Option = request.values.get('button_Option')
-		if useridCheck(userid):
-			requestModule = import_module('lib.' + button_Option)
-			operationObject = getattr(requestModule, button_Option)(userid)
-			outcome = getattr(operationObject, button_Option)()
-		else:	
-			outcome = 'Error: userid输入错误'
+		try:
+			userid = request.values.get('userid')
+			userserver = request.values.get('server')
+			button_Option = request.values.get('button_Option')
+			if useridCheck(userid):
+				requestModule = import_module('lib.' + button_Option)
+				operationObject = getattr(requestModule, button_Option)(userid)
+				outcome = getattr(operationObject, button_Option)()
+			else:	
+				outcome = 'Error: userid输入错误'
+				return render_template('webtest.html', option_act = outcome)
+		except ValueError:
+			outcome = 'Error: 后台调用模块失效(null)'
 			return render_template('webtest.html', option_act = outcome)
-		# except ValueError:
-		# 	outcome = 'Error: 后台调用模块失效(null)'
-		# 	return render_template('webtest.html', option_act = outcome)
-		# except Exception as e:
-		# 	outcome = e
-		# 	return render_template('webtest.html', option_act = outcome)
+		except Exception as e:
+			outcome = e
+			return render_template('webtest.html', option_act = outcome)
 
 		# Web前端提交后由后台反馈的信息再显示到Web端以示执行结果，后台所有函数均会返回outcome
 		return render_template('webtest.html', option_act = outcome, id_req = userid, server_req = userserver)

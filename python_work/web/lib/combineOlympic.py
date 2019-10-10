@@ -46,7 +46,7 @@ class combineOlympic(lib.userInfo.getUserInfo):
 			self.udata['p4'] = []
 			self.udata['p5'] = {}
 			self.udata['pp1'] = {}
-			result = self.db_data.update_one(self.target, {'$set': self.udata})
+			result = self.db_data.update_one(target, {'$set': self.udata})
 			outcome = '清除成功, 删包重装无头像、勋章等'
 		else:
 			outcome = '未找到此ID'
@@ -58,7 +58,7 @@ class combineOlympic(lib.userInfo.getUserInfo):
 			# 届数可设置
 			self.udata['x']['81'] = sessionsNum
 			self.udata['x']['80'] = "1"
-			result = self.db_data.update_one(self.target, {'$set': self.udata})
+			result = self.db_data.update_one(target, {'$set': self.udata})
 			outcome = 'login可见第一名发奖弹窗'
 		else:
 			outcome = '未找到此ID'
