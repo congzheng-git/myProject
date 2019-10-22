@@ -1,7 +1,6 @@
 from flask import Flask
 from flask import render_template
 from flask import request
-from bson import json_util as jsonb
 import pymongo
 import time
 import sys, os
@@ -48,5 +47,5 @@ def useridCheck(userid):
 # flask用法，运行服务器
 if __name__ =='__main__':
 	# 上方发布到局域网，下方本地测试
-	# app.run(host='0.0.0.0', port=5001)	
+	# app.run(host='0.0.0.0', port=5001)
 	app.run(debug=True)
