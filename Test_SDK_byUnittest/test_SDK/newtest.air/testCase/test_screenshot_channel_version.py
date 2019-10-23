@@ -6,6 +6,7 @@ import unittest
 
 class test_channel_version(unittest.TestCase):
 	def setUp(self):
+		# 检测是否处于可测试状态
 		pass
 
 
@@ -15,6 +16,7 @@ class test_channel_version(unittest.TestCase):
 		
 
 	def tearDown(self):
+		# 使游戏回归可测试状态
 		pass
 
 

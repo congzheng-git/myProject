@@ -6,6 +6,7 @@ import unittest
 
 class test_energy(unittest.TestCase):
 	def setUp(self):
+		# 检测是否处于可测试状态
 		pass
 
 
@@ -14,4 +15,5 @@ class test_energy(unittest.TestCase):
 		assert_equal(0, os.system(test_cmd))
 
 	def tearDown(self):
+		# 使游戏回归可测试状态
 		pass
