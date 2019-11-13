@@ -33,6 +33,7 @@ class install_list(object):
 	def install_list_custom(self):
 		return [os.path.join(root, filename) for root, dirs, files, in os.walk(self.path) for filename in files if filename.endswith('apk') for customName in self.custom_list if customName in filename]
 
+
 class sortFile(object):
 	"""获取路径下最新创建的文件夹"""
 	def __init__(self, path):
@@ -44,14 +45,19 @@ class sortFile(object):
 			return self.dirList[-1]
 
 
-screenshot_path = 'G:\\Airtest\\newtest\\screenshot'
-# 重试次数、截图存储路径信息		
-case_step_tryNum = 3
-channelName = sortFile(screenshot_path).sortFile()
-
-settingFile_path = r'G:\Airtest\newtest\newtest.air\Setting.xlsx'
+settingFile_path = r'G:\Airtest\testSDK_auto\test_SDK\Setting.xlsx'
 # 读取关于脚本运行的设置
 oldVersion_apk_path = SDKtest_setting(settingFile_path).oldVersion_apk_path()
 newVersion_apk_path = SDKtest_setting(settingFile_path).newVersion_apk_path()
 custom_channel_list = SDKtest_setting(settingFile_path).custom_channel_list()
 custom_install_option = SDKtest_setting(settingFile_path).custom_install_option()
+
+
+# 失败重试次数、截图存储路径信息	
+# 这些参数其实也可以写入excel再进行读取的方式来获取
+screenshot_path = 'G:\\Airtest\\testSDK_auto\\test_result'
+case_step_tryNum = 3
+channelName = sortFile(screenshot_path).sortFile()
+
+
+
