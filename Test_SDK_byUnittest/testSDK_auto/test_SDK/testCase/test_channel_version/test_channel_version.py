@@ -29,7 +29,7 @@ class test_channel_version(unittest.TestCase):
 		print('可以开始测试')
 
 	def test_channel_version(self):
-		
+
 		# 点击'设置'，等待，截图
 		touch(Template(r"tpl1568969049545.png", record_pos=(0.435, -0.83), resolution=(1080, 1920)))
 		sleep(3.0)
@@ -43,10 +43,10 @@ class test_channel_version(unittest.TestCase):
 				picPath_name = self.path + '\\渠道+版本号(旧).jpg'
 			else:
 				picPath_name = self.path + '\\渠道+版本号(新).jpg'
-			# 截图 
+			# 截图
 			pic = snapshot(picPath_name, msg="版本渠道+版本号查看.")
 			is_snapshot = True
-		
+
 		self.assertTrue(is_snapshot, msg='未能截图')
 
 		# 命令行运行——性能及准确性不好, 不应使用这种方式

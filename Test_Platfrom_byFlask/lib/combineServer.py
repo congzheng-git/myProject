@@ -203,7 +203,7 @@ class combineServer(lib.userInfo.getUserInfo):
 			if 'invalid' in stderr.read().decode():
 				outcome = '时间格式错误'
 				return outcome
-			cmd = 'date'	
+			cmd = 'date'
 			stdin,stdout,stderr = ssh.exec_command(cmd)
 			strout = bytes.decode(stdout.read())
 			outcome = 'Current Time: %s'%(strout)

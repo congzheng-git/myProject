@@ -26,12 +26,12 @@ class circusDummys(lib.userInfo.getUserInfo):
 			tcircus_find = self.db_circusTeam.find_one(tcircus_target)
 			if tcircus_find:
 				for i in range(0, 10):
-					uid = str(random.randint(0, 100000)) 
+					uid = str(random.randint(0, 100000))
 					ucon = { "a" : "","b" : "","c" : 1,"d" : -1}
 					ucon['a'] = '假人' + uid
 					ucon['b'] = str(random.randint(1, 5))
 					ucon['c'] = random.randint(1, 3000)
-					tcircus_find['a'][uid] = ucon 
+					tcircus_find['a'][uid] = ucon
 				result = self.db_circusTeam.update_one(tcircus_target,  {'$set': tcircus_find})
 				outcome = '加了10个假人.'
 			else:
@@ -66,12 +66,12 @@ class circusDummys(lib.userInfo.getUserInfo):
 #         tcircus_find = db_coll_circusTeam.find_one(tcircus_target)
 #         if tcircus_find:
 #             for i in range(0, 10):
-#                 uid = str(random.randint(0, 100000)) 
+#                 uid = str(random.randint(0, 100000))
 #                 ucon = { "a" : "","b" : "","c" : 1,"d" : -1}
 #                 ucon['a'] = '假人' + uid
 #                 ucon['b'] = str(random.randint(1, 5))
 #                 ucon['c'] = random.randint(1, 3000)
-#                 tcircus_find['a'][uid] = ucon 
+#                 tcircus_find['a'][uid] = ucon
 #             result = db_coll_circusTeam.update_one(tcircus_target,  {'$set': tcircus_find})
 #             outcome = '加了10个假人.'
 #         else:

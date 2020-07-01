@@ -14,7 +14,7 @@ logger.get_logger("airtest").setLevel(logging.ERROR)
 class Get_config(object):
 	def __init__(self):
 		self.path = 'Z:\\publish\\android\\China\\6.9.1\\pilot_run'
-	
+
 	def get_apks_name(self):
 		return ([os.path.join(root, filename) for root, dirs, files, in os.walk(self.path) for filename in files if filename.endswith('apk')])
 
@@ -63,8 +63,8 @@ class channelLogin():
 
 			elif exists(Template(r"tpl1571387538084.png", record_pos=(0.445, -0.54), resolution=(1080, 1920))):
 				touch(Template(r"tpl1571387538084.png", record_pos=(0.445, -0.54), resolution=(1080, 1920)))
-				sleep(1)			  
-				
+				sleep(1)
+
 		elif self.channelName == 'tencent' or self.channelName ==  'qq_browser' or self.channelName == 'qq_guanjia':
 			if exists(Template(r"tpl1570873686930.png", record_pos=(0.001, 0.682), resolution=(1080, 1920))):
 				sleep(1)
@@ -72,12 +72,12 @@ class channelLogin():
 				sleep(1)
 
 class Test_updateCheck(object):
-	
+
 	def teardown_class(self):
 		for apkName in device().list_app():
 			if 'jelly' in apkName:
 				uninstall(apkName)
-	
+
 	@pytest.fixture
 	def log(self):
 		log_for_test = logging.getLogger('test_check')
@@ -107,7 +107,7 @@ class Test_updateCheck(object):
 				break
 		assert is_installed, '低版本安装失败'
 		log.info('低版本%s安装成功'%(channelName))
-	
+
 	@pytest.mark.incremental
 	def test_start_apk(self, log):
 		start_game = False
@@ -135,7 +135,7 @@ class Test_updateCheck(object):
 				return True
 		else:
 			return False
-	
+
 	def phone_authorized(self):
 		if exists(Template(r"tpl1570782102183.png", record_pos=(0.244, 0.806), resolution=(1080, 1920))):
 			sleep(1)
@@ -217,7 +217,7 @@ class Test_updateCheck(object):
 		assert is_downloading, '未能正常开始下载'
 		log.info('更新提醒开始下载')
 
-	
+
 	@pytest.mark.incremental
 	def test_is_downloaded_finished(self, log):
 		try:
@@ -236,7 +236,7 @@ if __name__ == '__main__':
 	for apkName in Get_config().get_apks_name():
 		cmd_content = apkName
 		channelName = Get_config.get_channel_name(apkName)
-		cmd_report = '--html=./report/' + channelName + '_report.html' 
+		cmd_report = '--html=./report/' + channelName + '_report.html'
 		pytest.main(['-p', 'no:warnings', '-s', '-v', my_cmd, cmd_content, 'test_updateCheck_pytest.py', cmd_report])
 
 

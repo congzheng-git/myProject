@@ -23,7 +23,7 @@ def scripts_All():
 				requestModule = import_module('lib.' + button_Option)
 				operationObject = getattr(requestModule, button_Option)(userid)
 				outcome = getattr(operationObject, button_Option)()
-			else:	
+			else:
 				outcome = 'Error: userid输入错误'
 				return render_template('webtest.html', option_act = outcome)
 		except ValueError:

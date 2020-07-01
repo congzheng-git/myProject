@@ -50,6 +50,7 @@ def publishMD5(path):
 				if filename.endswith('apk'):
 					checkMD5.write(filename + ': ')
 					checkMD5.write(getMD5(os.path.join(root, filename)))
+					print(getMD5(os.path.join(root, filename)))
 					checkMD5.write('\n')
 					checkMD5.write('\n')
 					print(filename + ' gets MD5 done')
@@ -57,7 +58,7 @@ def publishMD5(path):
 	print('publish--apk--MD5--finished')
 	print('-'*150)
 
-def mactchMD5(path, matches_links): 
+def mactchMD5(path, matches_links):
 	MD5TXT = report(publishPath)
 	# 打开报告,获取由链接下载下来的APK的包的MD5并同已写入的待提交包的MD5进行匹配
 	for root, dirs, files in os.walk(path):
@@ -76,6 +77,7 @@ def mactchMD5(path, matches_links):
 					# 匹配失败时, 在报告中写入失败的APK文件名及其来源链接
 					else:
 						print(filename + ' checks MD5 failed')
+						print(downloadMD5.rstrip())
 						with open (MD5TXT, 'a+') as checkMD5:
 							if filename in matches_links.values():
 								failedApk_link = list(matches_links.keys())[list(matches_links.values()).index(filename)]
@@ -173,7 +175,7 @@ def my_downLoad(url, file_name, links_Apks, links_failed):
 		print("下载异常: %s" % file_name, 'Error: ', e)
 	else:
 		print("下载成功: %s" % file_name)
-		
+
 
 def separate_download(g_list, o_list, start, stop):
 	with gevent.Timeout(1200, False) as timeout:
