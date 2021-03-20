@@ -9,7 +9,7 @@ Flask==1.0.2
 hrpc==1.0.8
 idna==2.8
 itsdangerous==1.1.0
-Jinja2==2.10
+Jinja2==2.11.3
 MarkupSafe==1.1.0
 numpy==1.16.2
 opencv-contrib-python==3.4.2.17
