@@ -17,7 +17,7 @@ Pillow==5.4.1
 pocoui==1.0.75
 pymongo==3.7.1
 python-dateutil==2.7.5
-pywin32==224
+pywin32==301
 pywinauto==0.6.3
 requests==2.21.0
 selenium==3.141.0
