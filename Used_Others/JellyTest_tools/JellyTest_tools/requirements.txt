@@ -12,7 +12,7 @@ itsdangerous==1.1.0
 Jinja2==2.10
 MarkupSafe==1.1.0
 numpy==1.16.2
-opencv-contrib-python==3.4.2.17
+opencv-contrib-python==3.4.7.28
 Pillow==5.4.1
 pocoui==1.0.75
 pymongo==3.7.1
